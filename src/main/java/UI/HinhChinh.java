@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package UI;
 
 import Utils.Auth;
 import Utils.Msgbox;
 import Utils.XImage;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +17,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-/**
- *
- * @author DELL
- */
 public class HinhChinh extends javax.swing.JFrame {
 
     /**
@@ -33,16 +26,16 @@ public class HinhChinh extends javax.swing.JFrame {
         initComponents();
         init();
         initClock();
-        
+
     }
-    
-    void init(){
-       setIconImage(XImage.getAppIcon());
-       setLocationRelativeTo(null);
-       setTitle("HỆ THỐNG QUẢN LÝ ĐÀO TẠO");
-        
+
+    void init() {
+        setIconImage(XImage.getAppIcon());
+        setLocationRelativeTo(null);
+        setTitle("HỆ THỐNG QUẢN LÝ ĐÀO TẠO");
+
     }
-    
+
     private Timer timer;
     private void initClock() {
         timer = new Timer(1000, new ActionListener() {
@@ -55,8 +48,8 @@ public class HinhChinh extends javax.swing.JFrame {
         });
         timer.start();
     }
-    
-    
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -203,14 +196,8 @@ public class HinhChinh extends javax.swing.JFrame {
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
-        DesktopLayout.setHorizontalGroup(
-            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
-        );
-        DesktopLayout.setVerticalGroup(
-            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
-        );
+        DesktopLayout.setHorizontalGroup(DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 855, Short.MAX_VALUE));
+        DesktopLayout.setVerticalGroup(DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 484, Short.MAX_VALUE));
 
         lblTrangThai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Info.png"))); // NOI18N
         lblTrangThai.setText("Hệ quản lý đào tạo");
@@ -220,24 +207,8 @@ public class HinhChinh extends javax.swing.JFrame {
 
         javax.swing.GroupLayout pnlTrangThaiLayout = new javax.swing.GroupLayout(pnlTrangThai);
         pnlTrangThai.setLayout(pnlTrangThaiLayout);
-        pnlTrangThaiLayout.setHorizontalGroup(
-            pnlTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTrangThaiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTrangThai)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblDongHo)
-                .addGap(8, 8, 8))
-        );
-        pnlTrangThaiLayout.setVerticalGroup(
-            pnlTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTrangThaiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTrangThai)
-                    .addComponent(lblDongHo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        pnlTrangThaiLayout.setHorizontalGroup(pnlTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(pnlTrangThaiLayout.createSequentialGroup().addContainerGap().addComponent(lblTrangThai).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(lblDongHo).addGap(8, 8, 8)));
+        pnlTrangThaiLayout.setVerticalGroup(pnlTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(pnlTrangThaiLayout.createSequentialGroup().addContainerGap().addGroup(pnlTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(lblTrangThai).addComponent(lblDongHo)).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         mnuHeThong.setText("Hệ thống");
 
@@ -400,22 +371,8 @@ public class HinhChinh extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbaCongCu, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
-            .addComponent(Desktop)
-            .addComponent(pnlTrangThai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tbaCongCu, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Desktop)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(tbaCongCu, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE).addComponent(Desktop).addComponent(pnlTrangThai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tbaCongCu, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(Desktop).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(pnlTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -428,7 +385,7 @@ public class HinhChinh extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         opendangNhap();
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void mniChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniChuyenDeActionPerformed
@@ -473,7 +430,7 @@ public class HinhChinh extends javax.swing.JFrame {
 
     private void mnuThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuThongKeActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_mnuThongKeActionPerformed
 
     private void mniGioiThieuSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniGioiThieuSanPhamActionPerformed
@@ -483,7 +440,7 @@ public class HinhChinh extends javax.swing.JFrame {
 
     private void mniDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhThuActionPerformed
         // TODO add your handling code here:
-         openThongKe(3);
+        openThongKe(3);
     }//GEN-LAST:event_mniDoanhThuActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -535,98 +492,104 @@ public class HinhChinh extends javax.swing.JFrame {
         // TODO add your handling code here:
         openHuongdan();
     }//GEN-LAST:event_btnHuongDanActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
     //phần hệ thống
     public void opendoimk() {
-        if(Auth.isLogin()){
+        if (Auth.isLogin()) {
             DoiMatKhau DoiMK = new DoiMatKhau();
-            openWindow(Desktop,DoiMK);
+            openWindow(Desktop, DoiMK);
 //            Desktop.add(DoiMK);
             DoiMK.setVisible(true);
-     
-        }else{
-            Msgbox.alert(this,"Vui lòng đăng nhập");
-        }  
+
+        } else {
+            Msgbox.alert(this, "Vui lòng đăng nhập");
+        }
     }
 
-    
+
     public void opendangNhap() {
         DangNhap dN = new DangNhap();
-        openWindow(Desktop,dN);
+        openWindow(Desktop, dN);
 //        Desktop.add(dN);
         dN.setVisible(true);
 //        openWindow(Desktop,dN);
     }
-    
-    void dangXuat(){
+
+    void dangXuat() {
         Auth.clear();
         opendangNhap();
     }
-    
-    void ketThuc(){
-        if(Msgbox.confirm(this,"Bạn muốn kết thúc làm việc")){
+
+    void ketThuc() {
+        if (Msgbox.confirm(this, "Bạn muốn kết thúc làm việc")) {
             System.exit(0);
         }
     }
+
     //phần quản lý
     public void openchuyende() {
-        if(Auth.isLogin()){
+        if (Auth.isLogin()) {
             Thematic qlcd = new Thematic();
-            openWindow(Desktop,qlcd);
+            openWindow(Desktop, qlcd);
 //            Desktop.add(qlcd);
             qlcd.setVisible(true);
 //            openWindow(Desktop,qlcd);
-        }else{
-            Msgbox.alert(this,"Vui lòng đăng nhập");
-        }             
+        } else {
+            Msgbox.alert(this, "Vui lòng đăng nhập");
+        }
     }
+
     public void openkhoahoc() {
-        if(Auth.isLogin()){
+        if (Auth.isLogin()) {
             course qlkh = new course();
-            openWindow(Desktop,qlkh);
+            openWindow(Desktop, qlkh);
 //            Desktop.add(qlkh);
             qlkh.setVisible(true);
 //            openWindow(Desktop,qlkh);
-        }else{
-            Msgbox.alert(this,"Vui lòng đăng nhập");
-        }                          
+        } else {
+            Msgbox.alert(this, "Vui lòng đăng nhập");
+        }
     }
+
     public void opennguoihoc() {
-        if(Auth.isLogin()){
+        if (Auth.isLogin()) {
             learner qlnh = new learner();
-            openWindow(Desktop,qlnh);
+            openWindow(Desktop, qlnh);
 //            Desktop.add(qlnh);
             qlnh.setVisible(true);
 //            openWindow(Desktop,qlnh);
-        }else{
-            Msgbox.alert(this,"Vui lòng đăng nhập");
-        }                           
+        } else {
+            Msgbox.alert(this, "Vui lòng đăng nhập");
+        }
     }
+
     public void openhocvien() {
-        if(Auth.isLogin()){
+        if (Auth.isLogin()) {
             Student qlhv = new Student();
-            openWindow(Desktop,qlhv);
+            openWindow(Desktop, qlhv);
 //            Desktop.add(qlhv);
             qlhv.setVisible(true);
 //            openWindow(Desktop,qlhv);
-        }else{
-            Msgbox.alert(this,"Vui lòng đăng nhập");
-        }                     
+        } else {
+            Msgbox.alert(this, "Vui lòng đăng nhập");
+        }
     }
+
     public void opennhanvien() {
-        if(Auth.isLogin()){
+        if (Auth.isLogin()) {
             Empolyee qlnv = new Empolyee();
-            openWindow(Desktop,qlnv);
+            openWindow(Desktop, qlnv);
 //            Desktop.add(qlnv);
             qlnv.setVisible(true);
 //            openWindow(Desktop,qlnv);
-        }else{
-            Msgbox.alert(this,"Vui lòng đăng nhập");
-        }          
+        } else {
+            Msgbox.alert(this, "Vui lòng đăng nhập");
+        }
     }
+
     //phần thống kê
     public void openThongKe(int index) {
         if (Auth.isLogin()) {
@@ -635,7 +598,7 @@ public class HinhChinh extends javax.swing.JFrame {
                 return;
             } else {
                 Statistical st = new Statistical();
-                openWindow(Desktop,st);
+                openWindow(Desktop, st);
 //                Desktop.add(st).setVisible(true);
                 //st.setVisible(true);
                 st.seclectTab(index);
@@ -645,71 +608,75 @@ public class HinhChinh extends javax.swing.JFrame {
             Msgbox.alert(this, "Vui lòng đăng nhập lại!");
         }
     }
+
     //phần trợ giúp
-    public void opengioithieu(){
-        if(Auth.isLogin()){
+    public void opengioithieu() {
+        if (Auth.isLogin()) {
             GioiThieu gioithieu = new GioiThieu();
-            openWindow(Desktop,gioithieu);
+            openWindow(Desktop, gioithieu);
 //            Desktop.add(gioithieu);
             gioithieu.setVisible(true);
 //            openWindow(Desktop,gioithieu);
-        }else{
-            Msgbox.alert(this,"Vui lòng đăng nhập");
-        }     
-       
-    }
-    public void openHuongdan() {
-    if (!java.awt.Desktop.isDesktopSupported()) {
-        JOptionPane.showMessageDialog(this, "Desktop API không được hỗ trợ trên nền tảng này.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-    if (!desktop.isSupported(java.awt.Desktop.Action.OPEN)) {
-        JOptionPane.showMessageDialog(this, "Hành động mở file không được hỗ trợ trên nền tảng này.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        // Đường dẫn tới file hướng dẫn
-        File file = new File("help/index.html");
-        if (!file.exists()) {
-            throw new FileNotFoundException("File hướng dẫn không tồn tại.");
+        } else {
+            Msgbox.alert(this, "Vui lòng đăng nhập");
         }
-        desktop.open(file);
-    } catch (FileNotFoundException e) {
-        JOptionPane.showMessageDialog(this, "File hướng dẫn không tồn tại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi mở file hướng dẫn.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Một lỗi không xác định đã xảy ra.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+
     }
-}
+
+    public void openHuongdan() {
+        if (!java.awt.Desktop.isDesktopSupported()) {
+            JOptionPane.showMessageDialog(this, "Desktop API không được hỗ trợ trên nền tảng này.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+        if (!desktop.isSupported(java.awt.Desktop.Action.OPEN)) {
+            JOptionPane.showMessageDialog(this, "Hành động mở file không được hỗ trợ trên nền tảng này.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            // Đường dẫn tới file hướng dẫn
+            File file = new File("help/index.html");
+            if (!file.exists()) {
+                throw new FileNotFoundException("File hướng dẫn không tồn tại.");
+            }
+            desktop.open(file);
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "File hướng dẫn không tồn tại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi mở file hướng dẫn.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Một lỗi không xác định đã xảy ra.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     //chỉnh màn hình
-    private void openWindow(JDesktopPane desktopPane, JInternalFrame jInternalFrame){
+    private void openWindow(JDesktopPane desktopPane, JInternalFrame jInternalFrame) {
         Dimension desktopSize = desktopPane.getSize();
-        System.out.println("Desktop size width= "+desktopSize.width);
-        System.out.println("Desktop size height= "+desktopSize.height);
-        
+        System.out.println("Desktop size width= " + desktopSize.width);
+        System.out.println("Desktop size height= " + desktopSize.height);
+
         Dimension jInternalFrameSize = jInternalFrame.getSize();
-        System.out.println("Component size width= "+jInternalFrameSize.width);
-        System.out.println("Component size height= "+jInternalFrameSize.height);
-        
-        int x =(desktopSize.width - jInternalFrameSize.width)/2;
-        int y =(desktopSize.height - jInternalFrameSize.height)/2;
-        
-        System.out.println("Location x="+x);
-        System.out.println("Location y="+y);
-        
-        jInternalFrame.setLocation(x,y);
-        
+        System.out.println("Component size width= " + jInternalFrameSize.width);
+        System.out.println("Component size height= " + jInternalFrameSize.height);
+
+        int x = (desktopSize.width - jInternalFrameSize.width) / 2;
+        int y = (desktopSize.height - jInternalFrameSize.height) / 2;
+
+        System.out.println("Location x=" + x);
+        System.out.println("Location y=" + y);
+
+        jInternalFrame.setLocation(x, y);
+
         desktopPane.add(jInternalFrame).setVisible(true);
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

@@ -1,54 +1,44 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package UI;
 
-import Daos.NhanVienDao;
+import DAO.NhanVienDao;
 import Utils.Msgbox;
-import Classes.NhanVien;
+import DTO.NhanVien;
 import Utils.Auth;
-import Utils.XImage;
 
-/**
- *
- * @author DELL
- */
 public class DangNhap extends javax.swing.JInternalFrame {
 
     NhanVienDao dao = new NhanVienDao();
+
     /**
      * Creates new form DangNhap
      */
     public DangNhap() {
         initComponents();
     }
-    
-    
-    
 
-    void dangNhap(){
+    void dangNhap() {
         String MaNV = txtMaNV.getText();
         String password = new String(txtMatKhau.getPassword());
         NhanVien nv = dao.selectById(MaNV);
-        if(nv == null){
+        if (nv == null) {
             Msgbox.alert(this, "Sai đăng nhập");
-        }else{
-            if(!nv.getMatKhau().equals(password)){
+        } else {
+            if (!nv.getMatKhau().equals(password)) {
                 Msgbox.alert(this, "sai mật khẩu");
-            }else{
+            } else {
                 Auth.user = nv;
                 this.dispose();
             }
         }
-        
+
     }
-    
-    void ketThuc(){
-        if(Msgbox.confirm(this, "Bạn muốn kết thúc ứng dụng?")){
+
+    void ketThuc() {
+        if (Msgbox.confirm(this, "Bạn muốn kết thúc ứng dụng?")) {
             System.exit(0);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,44 +92,8 @@ public class DangNhap extends javax.swing.JInternalFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblMaNV)
-                        .addComponent(lblMatKhau)
-                        .addComponent(txtMaNV)
-                        .addComponent(txtMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnDangNhap)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnKetThuc)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMaNV)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblMatKhau)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDangNhap)
-                            .addComponent(btnKetThuc))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addComponent(jLabel1).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false).addComponent(lblMaNV).addComponent(lblMatKhau).addComponent(txtMaNV).addComponent(txtMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)).addGroup(layout.createSequentialGroup().addComponent(btnDangNhap).addGap(18, 18, 18).addComponent(btnKetThuc))).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGap(14, 14, 14).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE).addGroup(layout.createSequentialGroup().addComponent(lblMaNV).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lblMatKhau).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(btnDangNhap).addComponent(btnKetThuc)))).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -151,7 +105,8 @@ public class DangNhap extends javax.swing.JInternalFrame {
 
     private void btnKetThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetThucActionPerformed
         // TODO add your handling code here:
-        ketThuc();;
+        ketThuc();
+        ;
     }//GEN-LAST:event_btnKetThucActionPerformed
 
 
@@ -165,7 +120,5 @@ public class DangNhap extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField txtMatKhau;
     // End of variables declaration//GEN-END:variables
 
-    
 
-    
 }

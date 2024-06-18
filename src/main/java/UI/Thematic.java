@@ -1,31 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package UI;
 
-
-import Classes.ChuyenDe;
-import Daos.ChuyenDeDao;
+import DTO.ChuyenDe;
+import DAO.ChuyenDeDao;
 import Utils.Auth;
 import Utils.Msgbox;
 import Utils.XImage;
+
 import java.io.File;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
-
-
-/**
- *
- * @author DELL
- */
 public class Thematic extends javax.swing.JInternalFrame {
     ChuyenDeDao dao = new ChuyenDeDao();
     JFileChooser fileChooser = new JFileChooser();
     int row = 0;
+
     /**
      * Creates new form ChuyenDe
      */
@@ -34,30 +25,29 @@ public class Thematic extends javax.swing.JInternalFrame {
         fillTable();
         updateStatus();
     }
-    
 
-    public void fillTable(){
+    public void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblChuyenDe.getModel();
         model.setRowCount(0);
-        try{
+        try {
             List<ChuyenDe> list = dao.selectAll();
-            for(ChuyenDe cd : list){
+            for (ChuyenDe cd : list) {
                 Object[] row = {
-                    cd.getMaCD(),
-                    cd.getTenCD(),
-                    cd.getHocPhi(),
-                    cd.getThoiLuong(), 
-                    cd.getHinh()
+                        cd.getMaCD(),
+                        cd.getTenCD(),
+                        cd.getHocPhi(),
+                        cd.getThoiLuong(),
+                        cd.getHinh()
                 };
                 model.addRow(row);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             Msgbox.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
-    
-    void chonAnh(){
-        if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
+
+    void chonAnh() {
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             XImage.save(file);
             ImageIcon icon = XImage.read(file.getName());
@@ -65,8 +55,8 @@ public class Thematic extends javax.swing.JInternalFrame {
             lblAnh.setToolTipText(file.getName());
         }
     }
-    
-    void setForm(ChuyenDe model){
+
+    void setForm(ChuyenDe model) {
         txtMaCD.setText(model.getMaCD());
         txtTenCD.setText(model.getTenCD());
         txtThoiLuong.setText(String.valueOf(model.getThoiLuong()));
@@ -80,10 +70,10 @@ public class Thematic extends javax.swing.JInternalFrame {
             lblAnh.setIcon(null);
             lblAnh.setToolTipText("");
         }
-        
+
     }
-    
-    ChuyenDe getForm(){
+
+    ChuyenDe getForm() {
         ChuyenDe cd = new ChuyenDe();
         cd.setMaCD(txtMaCD.getText());
         cd.setTenCD(txtTenCD.getText());
@@ -93,45 +83,45 @@ public class Thematic extends javax.swing.JInternalFrame {
         cd.setHinh(lblAnh.getToolTipText());
         return cd;
     }
-    
-    
-    void edit(){
-        try{
+
+
+    void edit() {
+        try {
             String maCD = (String) tblChuyenDe.getValueAt(this.row, 0);
             ChuyenDe cd = dao.selectById(maCD);
-            if(cd != null){
+            if (cd != null) {
                 setForm(cd);
                 updateStatus();
-                tabs.setSelectedIndex(0);               
+                tabs.setSelectedIndex(0);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             Msgbox.alert(this, "Lỗi truy vấn dữ liệu");
         }
     }
-    
-    void updateStatus(){
+
+    void updateStatus() {
         boolean edit = this.row >= 0;
         boolean first = this.row == 0;
-        boolean last = this.row == tblChuyenDe.getRowCount()-1;
+        boolean last = this.row == tblChuyenDe.getRowCount() - 1;
         // trang thái form
         txtMaCD.setEditable(!edit);
         btnThem.setEnabled(!edit);
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
-        
-        btnFirst.setEnabled(edit&&!first);
-        btnPrev.setEnabled(edit&&!first);
-        btnNext.setEnabled(edit&&!last);
-        btnLast.setEnabled(edit&&!last);
+
+        btnFirst.setEnabled(edit && !first);
+        btnPrev.setEnabled(edit && !first);
+        btnNext.setEnabled(edit && !last);
+        btnLast.setEnabled(edit && !last);
     }
-    
-    void clearForm() {        
+
+    void clearForm() {
         this.setForm(new ChuyenDe());
         this.updateStatus();
         this.row = -1;
         updateStatus();
     }
-    
+
     void insert() {
         ChuyenDe cd = getForm();
         try {
@@ -143,7 +133,7 @@ public class Thematic extends javax.swing.JInternalFrame {
             Msgbox.alert(this, "Thêm mới thất bại!");
         }
     }
-    
+
     void update() {
         ChuyenDe cd = getForm();
         try {
@@ -154,6 +144,7 @@ public class Thematic extends javax.swing.JInternalFrame {
             Msgbox.alert(this, "Cập nhật thất bại!");
         }
     }
+
     //nhân viên tạo chuyên đề thì có thể xoá chuyên đề đc và cả trưởng phòng chú ý
     void delete() {
         if (!Auth.isManager()) {
@@ -172,29 +163,29 @@ public class Thematic extends javax.swing.JInternalFrame {
             }
         }
     }
-    
-    void fisrt(){
+
+    void fisrt() {
         row = 0;
         edit();
     }
-    
-    void prev(){
-        if(row > 0){
+
+    void prev() {
+        if (row > 0) {
             row--;
             edit();
         }
     }
-    
-    void next(){
-        if(row < tblChuyenDe.getRowCount()-1){
+
+    void next() {
+        if (row < tblChuyenDe.getRowCount() - 1) {
             row++;
             edit();
         }
     }
-    
-    void last(){
-        row = tblChuyenDe.getRowCount()-1;
-        edit();       
+
+    void last() {
+        row = tblChuyenDe.getRowCount() - 1;
+        edit();
     }
 
     /**
@@ -319,98 +310,98 @@ public class Thematic extends javax.swing.JInternalFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblMoTa)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblHinhLogo))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblMaCD)
-                                .addComponent(lblTenCD)
-                                .addComponent(lblThoiLuong)
-                                .addComponent(lblHocPhi)
-                                .addComponent(txtMaCD, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                                .addComponent(txtTenCD)
-                                .addComponent(txtThoiLuong)
-                                .addComponent(txtHocPhi)))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnSua)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnXoa)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnMoi)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnFirst)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnPrev)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnNext)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnLast))))
-                .addContainerGap(7, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jScrollPane2)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblMoTa)
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(lblHinhLogo))
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(lblMaCD)
+                                                                .addComponent(lblTenCD)
+                                                                .addComponent(lblThoiLuong)
+                                                                .addComponent(lblHocPhi)
+                                                                .addComponent(txtMaCD, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                                                .addComponent(txtTenCD)
+                                                                .addComponent(txtThoiLuong)
+                                                                .addComponent(txtHocPhi)))
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(btnSua)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(btnXoa)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(btnMoi)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(btnFirst)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(btnPrev)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(btnNext)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(btnLast))))
+                                .addContainerGap(7, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHinhLogo)
-                    .addComponent(lblMaCD))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtMaCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblTenCD)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTenCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblThoiLuong)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtThoiLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblHocPhi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtHocPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(lblMoTa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem)
-                    .addComponent(btnSua)
-                    .addComponent(btnXoa)
-                    .addComponent(btnMoi)
-                    .addComponent(btnFirst)
-                    .addComponent(btnPrev)
-                    .addComponent(btnNext)
-                    .addComponent(btnLast))
-                .addContainerGap(15, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblHinhLogo)
+                                        .addComponent(lblMaCD))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(txtMaCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(lblTenCD)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtTenCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(lblThoiLuong)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtThoiLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(lblHocPhi)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtHocPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(lblMoTa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnThem)
+                                        .addComponent(btnSua)
+                                        .addComponent(btnXoa)
+                                        .addComponent(btnMoi)
+                                        .addComponent(btnFirst)
+                                        .addComponent(btnPrev)
+                                        .addComponent(btnNext)
+                                        .addComponent(btnLast))
+                                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         tabs.addTab("CẬP NHẬT", jPanel2);
 
         tblChuyenDe.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "MÃ CD", "TÊN CD", "HỌC PHÍ", "THỜI LƯỢNG", "HÌNH"
-            }
+                new Object[][]{
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null}
+                },
+                new String[]{
+                        "MÃ CD", "TÊN CD", "HỌC PHÍ", "THỜI LƯỢNG", "HÌNH"
+                }
         ));
         tblChuyenDe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -422,18 +413,18 @@ public class Thematic extends javax.swing.JInternalFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
-                .addContainerGap())
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
-                .addContainerGap())
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         tabs.addTab("DANH SÁCH", jPanel3);
@@ -441,24 +432,24 @@ public class Thematic extends javax.swing.JInternalFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabs)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblChuyenDe, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tabs)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblChuyenDe, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblChuyenDe, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabs)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblChuyenDe, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tabs)
+                                .addContainerGap())
         );
 
         pack();
@@ -466,8 +457,8 @@ public class Thematic extends javax.swing.JInternalFrame {
 
     private void tblChuyenDeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChuyenDeMousePressed
         // TODO add your handling code here:
-        if(evt.getClickCount() == 2){
-            this.row =tblChuyenDe.rowAtPoint(evt.getPoint());
+        if (evt.getClickCount() == 2) {
+            this.row = tblChuyenDe.rowAtPoint(evt.getPoint());
             edit();
         }
     }//GEN-LAST:event_tblChuyenDeMousePressed
@@ -514,7 +505,7 @@ public class Thematic extends javax.swing.JInternalFrame {
 
     private void lblAnhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMousePressed
         // TODO add your handling code here:
-        if(evt.getClickCount() == 2){
+        if (evt.getClickCount() == 2) {
             chonAnh();
         }
     }//GEN-LAST:event_lblAnhMousePressed
@@ -550,5 +541,5 @@ public class Thematic extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtThoiLuong;
     // End of variables declaration//GEN-END:variables
 
-    
+
 }

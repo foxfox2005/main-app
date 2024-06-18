@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Utils;
 
 import java.awt.Image;
@@ -14,16 +10,12 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author DELL
- */
 public class XImage {
-    public static Image getAppIcon(){
+    public static Image getAppIcon() {
         URL url = XImage.class.getResource("/Icon/fpt.png");
         return new ImageIcon(url).getImage();
     }
-    
+
     public static void save(File src) {
         File dir = new File("\\src\\main\\resources\\Icon", src.getName());
         if (!dir.exists()) {

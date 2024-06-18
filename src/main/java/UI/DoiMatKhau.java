@@ -1,50 +1,44 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package UI;
 
-import Daos.NhanVienDao;
+import DAO.NhanVienDao;
 import Utils.Auth;
 import Utils.Msgbox;
-import Utils.XImage;
 
-/**
- *
- * @author DELL
- */
 public class DoiMatKhau extends javax.swing.JInternalFrame {
     NhanVienDao dao = new NhanVienDao();
+
     /**
      * Creates new form DoiMatKhau
      */
     public DoiMatKhau() {
         initComponents();
     }
-    
-    
-    
-    void doiMatKhau(){
+
+
+    void doiMatKhau() {
         String manv = txtMaNV.getText();
         String matKhau = new String(txtMatKhau.getPassword());
         String matKhauMoi1 = new String(txtMatKhau1.getPassword());
         String matKhauMoi2 = new String(txtMatKhau2.getPassword());
-        if(!manv.equalsIgnoreCase(Auth.user.getMaNV())){
+        if (!manv.equalsIgnoreCase(Auth.user.getMaNV())) {
             Msgbox.alert(this, "Sai tên đăng nhập");
-        }else if(!matKhau.equals(Auth.user.getMatKhau())){
+        } else if (!matKhau.equals(Auth.user.getMatKhau())) {
             Msgbox.alert(this, "Sai mật khẩu");
-        }else if(!matKhauMoi1.equals(matKhauMoi2)){
+        } else if (!matKhauMoi1.equals(matKhauMoi2)) {
             Msgbox.alert(this, "Xác nhận mật khẩu không đúng!");
-        }else{
+        } else {
             Auth.user.setMatKhau(matKhauMoi1);
             dao.update(Auth.user);
             Msgbox.alert(this, "Đổi mật khẩu thành công!");
         }
     }
-    
-    void huyBo(){
+
+    void huyBo() {
         this.dispose();
-    };
+    }
+
+    ;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,53 +93,53 @@ public class DoiMatKhau extends javax.swing.JInternalFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblMaNV)
-                    .addComponent(lblDoiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(lblMatKhau1)
-                    .addComponent(txtMaNV)
-                    .addComponent(txtMatKhau1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblMatKhau)
-                    .addComponent(lblMatKhau2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnDongY)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnHuyBo))
-                    .addComponent(txtMatKhau2)
-                    .addComponent(txtMatKhau))
-                .addGap(16, 16, 16))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblMaNV)
+                                        .addComponent(lblDoiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                        .addComponent(lblMatKhau1)
+                                        .addComponent(txtMaNV)
+                                        .addComponent(txtMatKhau1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblMatKhau)
+                                        .addComponent(lblMatKhau2)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnDongY)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnHuyBo))
+                                        .addComponent(txtMatKhau2)
+                                        .addComponent(txtMatKhau))
+                                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMaNV)
-                    .addComponent(lblMatKhau))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMatKhau1)
-                    .addComponent(lblMatKhau2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMatKhau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMatKhau2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDongY)
-                    .addComponent(btnHuyBo))
-                .addContainerGap(16, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblMaNV)
+                                        .addComponent(lblMatKhau))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblMatKhau1)
+                                        .addComponent(lblMatKhau2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtMatKhau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtMatKhau2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnDongY)
+                                        .addComponent(btnHuyBo))
+                                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();

@@ -4,12 +4,8 @@
  */
 package Utils;
 
-import Classes.NhanVien;
+import DTO.NhanVien;
 
-/**
- *
- * @author DELL
- */
 public class Auth {
     public static NhanVien user = null;
 

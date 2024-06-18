@@ -1,22 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package UI;
 
-import Classes.KhoaHoc;
-import Daos.KhoaHocDao;
-import Daos.ThongKeDao;
+import DTO.KhoaHoc;
+import DAO.KhoaHocDao;
+import DAO.ThongKeDao;
 import Utils.Auth;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
-
-/**
- *
- * @author DELL
- */
 public class Statistical extends javax.swing.JInternalFrame {
 
     ThongKeDao dao = new ThongKeDao();
